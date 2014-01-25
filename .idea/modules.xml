@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/CS221Group08WalkingTour/CS221Group08WalkingTour.iml" filepath="$PROJECT_DIR$/CS221Group08WalkingTour/CS221Group08WalkingTour.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CS221Group08WalkingTourProject.iml" filepath="$PROJECT_DIR$/CS221Group08WalkingTourProject.iml" />
+    </modules>
+  </component>
+</project>
+

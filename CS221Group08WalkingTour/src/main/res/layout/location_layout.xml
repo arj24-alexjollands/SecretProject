@@ -1,0 +1,80 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LocationActivity"
+    tools:ignore="MergeRootFrame" >
+
+
+    <RelativeLayout
+        android:layout_height="fill_parent"
+        android:layout_width="fill_parent"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+
+            <TextView
+                android:id="@+id/locationNameLabel"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:text="Name:"
+                android:layout_alignParentLeft="true"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"/>
+
+            <EditText
+                android:id="@+id/locationNameTextField"
+                android:inputType="text"
+                android:hint="Location Name"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="10dp"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_toRightOf="@+id/locationNameLabel"/>
+
+            <TextView
+                android:id="@+id/locationDescLabel"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="40dp"
+                android:text="Description:"
+                android:layout_alignParentLeft="true"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_below="@+id/locationNameLabel"/>
+
+            <EditText
+                android:id="@+id/locationDescTextField"
+                android:inputType="textMultiLine"
+                android:hint="Location Description"
+                android:layout_marginTop="20dp"
+                android:layout_alignParentRight="true"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_below="@+id/locationNameTextField"
+                android:layout_toRightOf="@+id/locationDescLabel"/>
+
+        <Button
+            android:id="@+id/addPhotoButton"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_margin="20dp"
+            android:layout_below="@+id/locationDescTextField"
+            android:text="@string/add_photo" />
+
+
+            <Button
+                android:id="@+id/saveLocationButton"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:text="@string/save_location" />
+
+
+
+
+    </RelativeLayout>
+
+
+</FrameLayout>
