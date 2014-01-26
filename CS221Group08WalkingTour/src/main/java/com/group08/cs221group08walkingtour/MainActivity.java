@@ -80,7 +80,7 @@ public class MainActivity extends ActionBarActivity{
     //-------------------------------------
     private int initializeWalk(){
 
-        // TODO - add functionality to call the InputOutputHandler
+        // Add functionality to call the InputOutputHandler
         // It will need to check whether there is a Walk saved (using
         // Serializable) and if so, retrieve it.
 
