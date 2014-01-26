@@ -17,15 +17,71 @@
             android:text="@string/welcome_message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/welcomeMessageLabel"/>
+            android:id="@+id/welcomeMessageLabel"
+            android:layout_marginTop="10dp"/>
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Set Details"
-            android:id="@+id/setDetailsButton"
+        <TextView
+            android:id="@+id/walkNameLabel"
+            android:layout_marginLeft="20dp"
             android:layout_marginTop="40dp"
-            android:layout_below="@+id/welcomeMessageLabel" />
+            android:text="Walk Name:"
+            android:layout_alignParentLeft="true"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_below="@+id/welcomeMessageLabel"/>
+
+        <EditText
+            android:id="@+id/walkNameTextField"
+            android:inputType="text"
+            android:hint="Enter a Walk Title"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="70dp"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_toRightOf="@+id/walkNameLabel"/>
+
+        <TextView
+            android:id="@+id/walkDescLabel"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="40dp"
+            android:text="Short Description:"
+            android:layout_alignParentLeft="true"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_below="@+id/walkNameLabel"/>
+
+        <EditText
+            android:id="@+id/walkShortDescTextField"
+            android:inputType="textMultiLine"
+            android:hint="Walk Description"
+            android:layout_marginTop="20dp"
+            android:layout_alignParentRight="true"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_below="@+id/walkNameTextField"
+            android:layout_toRightOf="@+id/walkDescLabel"/>
+
+        <TextView
+            android:id="@+id/walkLongDescLabel"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="40dp"
+            android:text="Long Description:"
+            android:layout_alignParentLeft="true"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_below="@+id/walkDescLabel"/>
+
+        <EditText
+            android:id="@+id/walkLongDescTextField"
+            android:inputType="textMultiLine"
+            android:hint="More Details"
+            android:layout_marginTop="20dp"
+            android:layout_alignParentRight="true"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_below="@+id/walkShortDescTextField"
+            android:layout_toRightOf="@+id/walkLongDescLabel"/>
+
 
         <Button
             android:layout_width="wrap_content"
@@ -33,7 +89,7 @@
             android:text="Make a Walk"
             android:id="@+id/makeWalkButton"
             android:layout_marginTop="40dp"
-            android:layout_below="@+id/setDetailsButton"/>
+            android:layout_below="@+id/walkLongDescLabel"/>
 
 
     </RelativeLayout>

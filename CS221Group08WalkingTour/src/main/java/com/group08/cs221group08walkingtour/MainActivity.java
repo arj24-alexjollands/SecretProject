@@ -12,6 +12,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import android.widget.EditText;
+
+
+
 public class MainActivity extends ActionBarActivity{
 
 
@@ -19,9 +23,49 @@ public class MainActivity extends ActionBarActivity{
     public static final int MAKE_NEW_WALK = 1;
     public static final int USE_EXISTING_WALK = 2;
     private Walk existingWalk = null;
+
     private Button makeWalkButton;
 
+    private EditText walkNameTextField;
+    private EditText walkShortDescTextField;
+    private EditText walkLongDescTextField;
 
+
+
+
+
+
+
+
+
+    //-------------------------------------
+    // Fetch and set the walk data the user
+    // enters into the UI
+    //-------------------------------------
+    private Bundle getUserWalkData(Bundle newWalkData){
+
+        // Retrieve the data within the Text Fields
+        walkNameTextField = (EditText)this.findViewById(R.id.walkNameTextField);
+        walkShortDescTextField = (EditText)this.findViewById(R.id.walkShortDescTextField);
+        walkLongDescTextField = (EditText)this.findViewById(R.id.walkLongDescTextField);
+        String newWalkTitle = walkNameTextField.getText().toString();
+        String newWalkDescShort = walkShortDescTextField.getText().toString();
+        String newWalkDescLong = walkLongDescTextField.getText().toString();
+
+
+        // Perform a basic check on the input, if the user hasn't entered any details
+        // then use defaults.
+        if (newWalkTitle.equals("")){ newWalkTitle = "My First Walk"; }
+        if (newWalkDescShort.equals("")){ newWalkDescShort = "Quick stroll around campus"; }
+        if (newWalkDescLong.equals("")){ newWalkDescLong = "This walk is a quick amble around campus " +
+                                                            "with no real agenda."; }
+
+        newWalkData.putString("walkTitle", newWalkTitle);
+        newWalkData.putString("walkDescShort", newWalkDescShort);
+        newWalkData.putString("walkDescLong", newWalkDescLong);
+
+        return newWalkData;
+    }
 
 
 
@@ -36,20 +80,15 @@ public class MainActivity extends ActionBarActivity{
     //-------------------------------------
     private int initializeWalk(){
 
-        // TODO - add functionality and call the InputOutputHandler
+        // TODO - add functionality to call the InputOutputHandler
         // It will need to check whether there is a Walk saved (using
         // Serializable) and if so, retrieve it.
-
-
-
 
         // Make a call to the GPSTracker, in order to begin
         // getting a GPS fix.
         GPSTracker tracker = new GPSTracker(MainActivity.this);
         tracker.getLatitude();
         tracker.getLongitude();
-
-
 
         if (existingWalk == null){
             return MAKE_NEW_WALK;
@@ -61,9 +100,12 @@ public class MainActivity extends ActionBarActivity{
 
 
 
-    private void initiateGetNewWalkDetailsActivity(){
 
-    }
+
+
+
+
+
 
 
 
@@ -83,14 +125,6 @@ public class MainActivity extends ActionBarActivity{
         if (walkStatus == MAKE_NEW_WALK){
             setContentView(R.layout.main_layout);
 
-            // The new Walk details such as Name and Description, with defaults.
-            Bundle newWalkData = new Bundle();
-            newWalkData.putString("walkTitle", "@string/default_walk_title");
-            newWalkData.putString("walkDescShort", "@string/default_walk_desc_short");
-            newWalkData.putString("walkDescLong", "@string/default_walk_desc_long");
-
-
-
 
             // Go to the 'Walk Activity' when the 'Make Walk' button is pressed
             //----------------------------------------------------------------------
@@ -99,9 +133,17 @@ public class MainActivity extends ActionBarActivity{
 
                 @Override
                 public void onClick(View arg0) {
+
                     Intent walkIntent = new Intent(MainActivity.this, WalkActivity.class);
 
+                    Bundle newWalkData = new Bundle();
+                    newWalkData = getUserWalkData(newWalkData);
+
                     Walk w = new Walk();
+                    w.setTitle(newWalkData.getString("walkTitle"));
+                    w.setDescShort(newWalkData.getString("walkDescShort"));
+                    w.setDescLong(newWalkData.getString("walkDescLong"));
+
                     walkIntent.putExtra("walk", w);
 
                     startActivity(walkIntent);
@@ -110,24 +152,6 @@ public class MainActivity extends ActionBarActivity{
 
             });
 
-
-            // Go to the 'Walk Details Activity' when the 'Set Details' button is pressed
-            //----------------------------------------------------------------------
-            makeWalkButton = (Button)this.findViewById(R.id.makeWalkButton);
-            makeWalkButton.setOnClickListener(new View.OnClickListener() {
-
-                @Override
-                public void onClick(View arg0) {
-                    Intent walkIntent = new Intent(MainActivity.this, WalkActivity.class);
-
-                    Walk w = new Walk();
-                    walkIntent.putExtra("walk", w);
-
-                    startActivity(walkIntent);
-                }
-
-
-            });
 
         } else {
 

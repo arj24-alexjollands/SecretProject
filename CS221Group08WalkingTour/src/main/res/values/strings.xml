@@ -15,11 +15,5 @@
     <string name="title_activity_camera">CameraActivity</string>
     <string name="album_name">Camera</string>
 
-    <string name="default_walk_title">My First Walk</string>
-    <string name="default_walk_desc_short">Add your own short description of this walk</string>
-    <string name="default_walk_desc_long">This is where you can add a much longer description
-                                            of your walk, including discussing it\'s highlights
-                                            and whether it includes steep hills and so on.</string>
-
 
 </resources>
