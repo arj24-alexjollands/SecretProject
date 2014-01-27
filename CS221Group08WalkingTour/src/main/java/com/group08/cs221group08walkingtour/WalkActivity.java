@@ -29,7 +29,7 @@ public class WalkActivity extends ActionBarActivity implements Serializable{
     private Button completeWalkButton;
     private Vector<String[]> coordinatesList = new Vector<String[]>();
     private boolean recordingCoordinates = true;
-    private int COORDINATE_LOGGING_INTERVAL = 20000; // Milliseconds
+    private final int COORDINATE_LOGGING_INTERVAL = 5000; // Milliseconds
     private GPSTracker gps;
 
     //-----------------------------------------------------------------
@@ -140,7 +140,11 @@ public class WalkActivity extends ActionBarActivity implements Serializable{
 
                     while(recordingCoordinates){
 
-                        if(gps.canGetLocation()){
+                        System.out.println("-------^^^^^^^^----------");
+                        System.out.println("Recording Coordinates, Total: " + coordinatesList.size());
+                        System.out.println("-------^^^^^^^^----------");
+
+                        //if(gps.canGetLocation()){
                             latitude = gps.getLatitude();
                             longitude = gps.getLongitude();
 
@@ -152,10 +156,10 @@ public class WalkActivity extends ActionBarActivity implements Serializable{
                             if (latitude != 0.0){
                                 coordinatesList.add(gpsPositions);
                             }
-                        }
-                        else{
-                            gps.showSettingsAlert();
-                        }
+                        //}
+                        //else{
+                        // gps.showSettingsAlert();
+                        //}
 
                         Thread.sleep(COORDINATE_LOGGING_INTERVAL);
                     }
@@ -217,9 +221,23 @@ public class WalkActivity extends ActionBarActivity implements Serializable{
         this.configureButtons();
 
 
+
+        //----------------------------------------------------------------------------------------
         // Initiate the continuous logging of coordinate data
-        //-----------------------------------------------------------------
+        // Get the latest GPS coordinates, using the GPSTracker class.
+        // To view the latitude and longitude for debugging purposes, uncomment the Toast message.
+        //----------------------------------------------------------------------------------------
         gps = new GPSTracker(WalkActivity.this);
+
+        if(gps.canGetLocation()){
+            // Display a message for debugging
+            //Toast.makeText(getApplicationContext(), "Your Location is - \nLat: " + latitude + "\nLong: " + longitude, Toast.LENGTH_LONG).show();
+        }else{
+            // Can't get location because the GPS or Network is not enabled
+            // Ask user to enable GPS/network in settings
+            gps.showSettingsAlert();
+        }
+
         logCoordinates();
     }
 
