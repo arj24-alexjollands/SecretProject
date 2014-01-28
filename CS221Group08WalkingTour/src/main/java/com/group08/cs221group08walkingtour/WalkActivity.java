@@ -140,26 +140,31 @@ public class WalkActivity extends ActionBarActivity implements Serializable{
 
                     while(recordingCoordinates){
 
+                        gps.getLocation();
+
                         System.out.println("-------^^^^^^^^----------");
                         System.out.println("Recording Coordinates, Total: " + coordinatesList.size());
                         System.out.println("-------^^^^^^^^----------");
 
-                        //if(gps.canGetLocation()){
-                            latitude = gps.getLatitude();
-                            longitude = gps.getLongitude();
 
-                            String gpsPositions[] = new String[2];
-                            gpsPositions[0] = Double.toString(latitude);
-                            gpsPositions[1] = Double.toString(longitude);
+                        latitude = gps.getLatitude();
+                        longitude = gps.getLongitude();
 
-                            // Don't save completely blank data (wait for rough GPS lock)
-                            if (latitude != 0.0){
-                                coordinatesList.add(gpsPositions);
-                            }
-                        //}
-                        //else{
-                        // gps.showSettingsAlert();
-                        //}
+                        String gpsPositions[] = new String[2];
+                        gpsPositions[0] = Double.toString(latitude);
+                        gpsPositions[1] = Double.toString(longitude);
+
+                        // Don't save completely blank data (wait for rough GPS lock)
+                        if (latitude != 0.0){
+                            coordinatesList.add(gpsPositions);
+                        }
+
+                        System.out.println("-------^^^^^^^^----------");
+                        System.out.println("Lat: " + latitude);
+                        System.out.println("Lat: " + longitude);
+                        System.out.println("-------^^^^^^^^----------");
+
+
 
                         Thread.sleep(COORDINATE_LOGGING_INTERVAL);
                     }
